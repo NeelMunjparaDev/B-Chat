@@ -1,0 +1,21 @@
+node_modules
+.env
+npm-debug.log
+yarn-error.log
+
+
+# Logs and temporary files
+*.log
+*.pid
+*.lock
+.DS_Store
+
+
+# Database files
+*.sqlite
+*.db
+
+
+# IDE specific
+.idea/
+.vscode/
