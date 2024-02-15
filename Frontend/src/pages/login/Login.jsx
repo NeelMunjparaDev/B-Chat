@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import UseLogin from "../../hooks/UseLogin";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { loading, login } = UseLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(username, password);
+    await login(username, password);
+  };
+
   return (
     <div className="flex flex-col item justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
@@ -9,7 +22,7 @@ const Login = () => {
           <span className="text-blue-800 font-medium">B-Chat</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
               <span className="text-base label-text font-medium">Username</span>
@@ -18,6 +31,8 @@ const Login = () => {
               type="text"
               placeholder="Enter username"
               className="input input-bordered w-full  bg-[#51515368] h-10 font-medium"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -29,16 +44,28 @@ const Login = () => {
               type="password"
               placeholder="Enter password"
               className="input input-bordered w-full   h-10 bg-[#51515368] font-medium"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <a className="text-l hover:underline hover:text-blue-600 mt-2 ml-1 inline-block cursor-pointer">
+          <Link
+            to="/signup"
+            className="text-l hover:underline hover:text-blue-600 mt-2 ml-1 inline-block cursor-pointer"
+          >
             {"Don't"} have an account?
-          </a>
+          </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 bg-[#4ade80]">
-              Login
+            <button
+              className="btn btn-block btn-sm mt-2 bg-[#4ade80]"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Login"
+              )}
             </button>
           </div>
         </form>

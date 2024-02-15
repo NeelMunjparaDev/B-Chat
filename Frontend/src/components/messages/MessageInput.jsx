@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiSolidSend } from "react-icons/bi";
+import UseSendMessage from "../../hooks/UseSendMessage";
 
 const MessageInput = () => {
+  const [message, setMessage] = useState("");
+
+  const { sendMessage } = UseSendMessage();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!message) return;
+
+    await sendMessage(message);
+    setMessage("");
+  };
+
   return (
-    <form className="px-4 my-1">
+    <form className="px-4 my-1" onSubmit={handleSubmit}>
       <div className="w-full relative">
         <input
           type="text"
           className="border text-xs rounded-lg block w-full   p-2.5 bg-gray-600 text-white maxlength-5 row-span-1"
           placeholder="Send a message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
         <button
           type="submit"

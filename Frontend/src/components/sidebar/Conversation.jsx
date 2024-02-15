@@ -1,26 +1,35 @@
 import React from "react";
+import useConversation from "../../store_zustand/useConversation";
 
-const Conversation = () => {
+const Conversation = ({ conversation, lastId }) => {
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  const isSelected = selectedConversation?._id === conversation._id;
+
   return (
     <>
-      <div className="flex gap-2 items-center bg-[#51515368] hover:bg-[#515153d0] rounded p-2 py-1 cursor-pointer">
+      <div
+        className={`flex gap-2 items-center bg-[#51515368] hover:bg-[#515153d0] rounded p-2 py-1 cursor-pointer ${
+          isSelected ? "bg-[#515153d0]" : ""
+        }`}
+        onClick={() => setSelectedConversation(conversation)}
+      >
         <div className="avatar online">
           <div className="w-12 mask mask-squircle">
-            <img
-              src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?w=826&t=st=1707842085~exp=1707842685~hmac=1b0c003d84e7ff365354ffe641f23835fb1c9505e268df84c7b05c453dbad232"
-              alt="user image"
-            />
+            <img src={conversation.profilePic} alt="user image" />
           </div>
         </div>
 
         <div className="flex flex-col flex-1">
           <div className="flex justify-between">
-            <p className="font-bold text-gray-200 ml-2">Neel</p>
+            <p className="font-bold text-gray-200 ml-2">
+              {conversation.fullName}
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="divider my-0 py-0 h-1" />
+      {!lastId && <div className="divider my-0 py-0 h-1" />}
     </>
   );
 };
