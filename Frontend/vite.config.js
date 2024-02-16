@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: [import.meta.env.P],
+        target: ["http://localhost:5000", "https://b-chat-ksf4.onrender.com/"],
       },
     },
   },
