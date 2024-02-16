@@ -4,7 +4,9 @@
   "description": "B-Chat is a modern and efficient chat app designed to streamline your communication experience.",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon Backend/server.js"
+    "server": "nodemon Backend/server.js",
+    "start": "node Backend/server.js",
+    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
   },
   "type": "module",
   "keywords": [],
