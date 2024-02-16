@@ -1,10 +1,17 @@
 import React from "react";
 import useConversation from "../../store_zustand/useConversation";
+import { useSocketContext } from "../../context/SocketContext";
 
 const Conversation = ({ conversation, lastId }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
 
   const isSelected = selectedConversation?._id === conversation._id;
+
+  const { onlineUser } = useSocketContext();
+
+  // console.log(onlineUser[conversation._id]);
+
+  const isOnline = onlineUser.includes(conversation._id);
 
   return (
     <>
@@ -14,7 +21,7 @@ const Conversation = ({ conversation, lastId }) => {
         }`}
         onClick={() => setSelectedConversation(conversation)}
       >
-        <div className="avatar online">
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 mask mask-squircle">
             <img src={conversation.profilePic} alt="user image" />
           </div>
@@ -25,6 +32,10 @@ const Conversation = ({ conversation, lastId }) => {
             <p className="font-bold text-gray-200 ml-2">
               {conversation.fullName}
             </p>
+
+            <span className="countdown">
+              <span style={{ "--value": 49 }}></span>
+            </span>
           </div>
         </div>
       </div>

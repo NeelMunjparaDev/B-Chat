@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import useConversation from "../../store_zustand/useConversation";
+import { useAuthContext } from "../../context/AuthContext";
+import UseLIstenMssages from "../../hooks/UseLIstenMssages";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -42,10 +44,11 @@ const MessageContainer = () => {
 export default MessageContainer;
 
 const NoChatSelected = () => {
+  const { authUser } = useAuthContext();
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-3">
-        <p>🙋‍♂️Welcome Neel</p>
+        <p>🙋‍♂️Welcome {authUser.fullName}</p>
         <img
           className="h-[125px] rounded-xl"
           src="https://media.tenor.com/AvHPuvcRU4wAAAAi/cute-penguin.gif"
