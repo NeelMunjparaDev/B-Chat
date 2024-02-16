@@ -14,8 +14,21 @@ export const SocketContextProvider = ({ children }) => {
   const { authUser } = useAuthContext();
 
   useEffect(() => {
+    let socketUrl;
+    if (
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+    ) {
+      // Local development URL
+      socketUrl = "http://localhost:5000";
+    } else {
+      // Deployment URL
+      socketUrl = "https://b-chat-ksf4.onrender.com";
+    }
+
     if (authUser) {
-      const socket = io("http://localhost:5000", {
+      const socket = io(socketUrl, {
+        transports: ["websocket"],
         query: {
           userId: authUser._id,
         },
