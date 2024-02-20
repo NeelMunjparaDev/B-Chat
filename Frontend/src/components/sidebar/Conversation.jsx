@@ -16,7 +16,7 @@ const Conversation = ({ conversation, lastId }) => {
   return (
     <>
       <div
-        className={`flex gap-2 items-center bg-[#51515368] hover:bg-[#515153d0] rounded p-2 py-1 cursor-pointer ${
+        className={`flex gap-2 items-center rounded p-2 py-1 cursor-pointer ${
           isSelected ? "bg-[#515153d0]" : ""
         }`}
         onClick={() => setSelectedConversation(conversation)}
@@ -34,7 +34,7 @@ const Conversation = ({ conversation, lastId }) => {
             </p>
 
             <span className="countdown">
-              <span style={{ "--value": 49 }}></span>
+              {/* <span style={{ "--value":  }}></span> */}
             </span>
           </div>
         </div>

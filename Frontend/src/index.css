@@ -8,20 +8,22 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0;
 }
 
+/* Track */
 ::-webkit-scrollbar-track {
-  display: none;
-  background: #5555559e;
+  background: transparent; /* Make the scrollbar track transparent */
 }
 
+/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #3a353580;
-  border-radius: 5px;
+  background: transparent; /* Make the scrollbar handle transparent */
 }
+
+/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #242424;
+  background: #3a353580; /* Add a background color on hover for aesthetic purposes */
 }
 
 /* SHAKE ANIMATION ON HORIZONTAL DIRECTION */

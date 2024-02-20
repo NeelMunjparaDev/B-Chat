@@ -5,10 +5,10 @@ import UseLogout from "../../hooks/UseLogout";
 const LogoutButton = () => {
   const { loading, logout } = UseLogout();
   return (
-    <div className="mt-auto">
+    <div>
       {!loading ? (
-        <button className="btn btn-s bg-[#4ade80]" onClick={logout}>
-          Logout <BiLogOut className="w-6 h-6" />{" "}
+        <button onClick={logout}>
+          <BiLogOut className="w-6 h-6" />{" "}
         </button>
       ) : (
         <span className="loading loading-spinner"></span>

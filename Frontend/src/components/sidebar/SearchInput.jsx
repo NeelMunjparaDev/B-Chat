@@ -26,16 +26,16 @@ const SearchInput = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-3 m-5">
+    <form onSubmit={handleSubmit} className="flex items-center gap-3  relative">
       <input
         type="text"
         placeholder="Search..."
-        className="input input-bordered rounded-full  bg-[#51515368] font-medium "
+        className="input input-bordered rounded-full  bg-[#51515368] font-medium pl-10"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <button type="submit" className="btn btn-circle bg-sky-500 text-white">
-        <MdOutlinePersonSearch className="w-6 h-6 outline-none" />
+      <button type="submit">
+        <MdOutlinePersonSearch className="w-6 h-6 outline-none absolute left-0 top-0 bottom-0 my-auto ml-[203px]" />
       </button>
     </form>
   );

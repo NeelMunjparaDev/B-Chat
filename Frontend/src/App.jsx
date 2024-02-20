@@ -5,12 +5,14 @@ import Signup from "./pages/signup/Signup";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
+
 import { useEffect } from "react";
 
 function App() {
   const { authUser } = useAuthContext();
+
   return (
-    <div className="p-4 h-screen flex items-center justify-center">
+    <div className="p-4 h-screen flex flex-col items-center justify-center">
       <Routes>
         <Route
           path="/"
